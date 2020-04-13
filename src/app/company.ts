@@ -23,7 +23,6 @@ export class Company{
     let totalInv:number = 0;
     for (let i of this.inventory){
       totalInv += Number(i);
-      console.log(`inventory total being counter:${i}`);
 
     }
     return totalInv;
