@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "trader-tycoon": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "trader-tycoon"
+    }
+  },
+  "defaultProject": "trader-tycoon",
+  "cli": {
+    "analytics": "30984f9c-093e-4721-a208-d47a83a9dc6f"
+  }
 }
