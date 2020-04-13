@@ -1,1 +1,14 @@
 <h1>Upgrades</h1>
+<table class="upgrades">
+  <tr class = 'header'>
+    <th>Name</th>
+    <th>price</th>
+    <th>buy</th>
+    <th>owned</th>
+  <tr *ngFor="let item of upgrades,index as i">
+    <td class="itemName">{{item.name | uppercase}}</td>
+    <td class="price"> ${{item.cost}}</td>
+    <td>{{item.description}}<button [disabled]="item.owned" (click)="purchase(item)" type="button" name="button">Buy</button></td>
+    <td>{{item.owned}}</td>
+  </tr>
+</table>
