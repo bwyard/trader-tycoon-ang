@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from "../item";
-import { ITEMS } from "../itemList";
+import { Item } from "./item";
+import { ITEMS } from "./itemList";
 import { Company } from "../company";
 import { COMPANY } from "../companyCore";
 
@@ -17,37 +17,55 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setPrices()
+    this.setQuantities()
   }
 
-  setPrices():void{
+  setPrices(): void {
     for (let item of this.items) {
       item.setPrice();
     }
   }
-  buyItem(item: Item, quantity:number,index: number):void {
-    if(quantity>=0){
-    let transactionTotal = quantity * item.price
-    if (transactionTotal <= this.company.cash){
-      if((this.company.inventoryTotal()+Number(quantity))<(this.company.inventoryMax+1)){
-      this.company.cash -= transactionTotal;
-      console.log(`inventory total is ${this.company.inventoryTotal()}`);
-      console.log(`quantity is ${quantity}`)
-      this.company.inventory[index] += Number(quantity);
-      //console.log(this.company.inventory);
+  setQuantities():void{
+    for (let item of this.items){
+      item.quantity = Math.round(Math.random()*100)
     }
   }
-  }
-  }
-  sellItem(item: Item, quantity:number,index: number):void {
-    if(quantity>=0){
-    if (quantity<=this.company.inventory[index]){
-      let transactionTotal = quantity * item.price
-      this.company.cash += transactionTotal;
-      //console.log(this.company.cash);
-      this.company.inventory[index] -= quantity;
-    //  console.log(this.company.inventory);
+  buyItem(item: Item, quantity: number, index: number): void {
+    quantity = Math.round(quantity);
+    if (quantity >= 0) {
+      if (quantity<item.quantity) {
+        let transactionTotal = quantity * item.price
+        if (transactionTotal <= this.company.cash) {
+          if ((this.company.inventoryTotal() + Number(quantity)) < (this.company.inventoryMax + 1)) {
+            this.company.cash -= transactionTotal;
+            console.log(`inventory total is ${this.company.inventoryTotal()}`);
+            console.log(`quantity is ${quantity}`)
+            this.company.inventory[index] += Number(quantity);
+            //console.log(this.company.inventory);
+            item.quantity -= quantity;
+          } else alert("Not enough room to purchase inventory")
+        } else alert("Not enough cash to complete transaction")
+      } else alert(`This location does not have ${quantity} ${item.name} available to purchase`)
     }
-    }
   }
+  sellItem(item: Item, quantity: number, index: number): void {
+    quantity = Math.round(quantity);
+    if (quantity >= 0) {
+      if (quantity <= this.company.inventory[index]) {
+        let transactionTotal = quantity * item.price
+        this.company.cash += transactionTotal;
+        //console.log(this.company.cash);
+        this.company.inventory[index] -= quantity;
+        //  console.log(this.company.inventory);
+      } else alert("Can not sell you what you do not own")
+    } else alert("Can not sell 0 items")
 
+  }
+  travel() {
+    if (this.company.cash >= 1000) {
+      this.setPrices();
+      this.setQuantities();
+      this.company.cash -= 1000
+    } else alert("Not enough Money to travel")
+  }
 }
