@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { company } from "./company";
+import { Company } from "./company";
+import { COMPANY } from "./companyCore";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,5 @@ import { company } from "./company";
 })
 export class AppComponent {
   title = 'Trader Tycoon';
-  company = company;
+  company = COMPANY;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from "../item";
 import { ITEMS } from "../itemList";
-import { company } from "../company";
+import { Company } from "../company";
+import { COMPANY } from "../companyCore";
 
 @Component({
   selector: 'app-items',
@@ -11,8 +12,7 @@ import { company } from "../company";
 export class ItemsComponent implements OnInit {
 
   items = ITEMS;
-  company = company;
-
+  company = COMPANY;
   constructor() { }
 
   ngOnInit(): void {
@@ -28,12 +28,14 @@ export class ItemsComponent implements OnInit {
     if(quantity>=0){
     let transactionTotal = quantity * item.price
     if (transactionTotal <= this.company.cash){
-      //if()
+      if((this.company.inventoryTotal()+Number(quantity))<(this.company.inventoryMax+1)){
       this.company.cash -= transactionTotal;
-      console.log(this.company.cash);
-      this.company.inventory[index] =+ quantity;
-      console.log(this.company.inventory);
+      console.log(`inventory total is ${this.company.inventoryTotal()}`);
+      console.log(`quantity is ${quantity}`)
+      this.company.inventory[index] += Number(quantity);
+      //console.log(this.company.inventory);
     }
+  }
   }
   }
   sellItem(item: Item, quantity:number,index: number):void {
@@ -41,9 +43,9 @@ export class ItemsComponent implements OnInit {
     if (quantity<=this.company.inventory[index]){
       let transactionTotal = quantity * item.price
       this.company.cash += transactionTotal;
-      console.log(this.company.cash);
+      //console.log(this.company.cash);
       this.company.inventory[index] -= quantity;
-      console.log(this.company.inventory);
+    //  console.log(this.company.inventory);
     }
     }
   }
