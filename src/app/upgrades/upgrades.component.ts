@@ -20,6 +20,7 @@ export class UpgradesComponent implements OnInit {
     if(item.cost<=this.company.cash){
     item.owned = true;
     this.company.cash -= item.cost;
+    item.activateUpgrade()
   }
   else alert(`Cannot Afford ${item.name}`)
   }
