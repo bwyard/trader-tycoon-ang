@@ -1,0 +1,13 @@
+<h2>Countries to Travel</h2>
+<table class="table table-striped">
+  <tr class = 'header'>
+    <th>Name</th>
+    <th>abbreviation</th>
+    <th>Travel</th>
+    </tr>
+    <tr *ngFor = "let country of countries, index as i">
+      <td>{{country.name}}</td>
+      <td>{{country.abbreviation}}</td>
+<td><button type="button" name="button" (click)="itemsTravelFunction(country)" [disabled]="isDisabled(country)">Travel</button></td>
+</tr>
+</table>

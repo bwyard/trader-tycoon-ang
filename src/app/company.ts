@@ -6,9 +6,11 @@ export class Company{
   landTravel: boolean;
   flightTravel: boolean;
   seaTravel: boolean;
-  currentLocation: object;
+  currentLocation: string;
   inventory: number[];
-  constructor(name:string,cash:number,inventoryMax:number,travelSpeed:number,landTravel:boolean,flightTravel:boolean,seaTravel:boolean,currentLocation:object,inventory:number[]){
+  isLoaded: boolean;
+  travelCost: number;
+  constructor(name:string,cash:number,inventoryMax:number,travelSpeed:number,landTravel:boolean,flightTravel:boolean,seaTravel:boolean,currentLocation:string,inventory:number[]){
     this.name = name;
     this.cash = cash;
     this.inventoryMax = inventoryMax;
@@ -18,6 +20,8 @@ export class Company{
     this.seaTravel = seaTravel;
     this.currentLocation = currentLocation;
     this.inventory = inventory;
+    this.isLoaded = false,
+    this.travelCost = 1000
   }
   inventoryTotal():number {
     let totalInv:number = 0;
