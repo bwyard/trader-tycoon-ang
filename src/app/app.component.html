@@ -1,4 +1,4 @@
 <h1>Welcome to {{title}}!</h1>
-<h2>{{company.name | uppercase}} |  ${{company.cash}} | Inventory {{company.inventoryTotal()}}/{{company.inventoryMax}}</h2>
-<app-items></app-items>
-<app-upgrades></app-upgrades>
+<h2>{{getCompanyName()| uppercase}} |  ${{getCompanyCash()}} | Inventory {{getCompanyInventoryTotal()}}/{{getCompanyInventoryMax()}}</h2>
+<app-nav></app-nav>
+<router-outlet></router-outlet>

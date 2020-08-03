@@ -1,4 +1,5 @@
 export class Item {
+  id: number;
   name: string;
   floorVal: number;
   cielVal: number;
@@ -7,7 +8,8 @@ export class Item {
   weight: number;
   tax: number;
   quantity: number
-  constructor(name: string,floorVal: number,cielVal:number,avgVal:number,weight:number,tax:number) {
+  constructor(id:number,name: string,floorVal: number,cielVal:number,avgVal:number,weight:number,tax:number) {
+    this.id = id,
     this.name = name,
     this.floorVal = floorVal,
     this.cielVal = cielVal,

@@ -1,6 +1,5 @@
-<h2>Items
-<button type="button" name="button" (click)="travel()">Travel</button></h2>
-<table class="items">
+<h2>Items</h2>
+<table class="table table-striped">
   <tr class = 'header'>
     <th>Name</th>
     <th>quantity</th>
@@ -8,12 +7,13 @@
     <th>buy</th>
     <th>owned</th>
     <th>sell</th>
+    </tr>
   <tr *ngFor="let item of items,index as i">
     <td class="itemName">{{item.name | uppercase}}</td>
     <td class="quantity"> {{item.quantity}}</td>
     <td class="price"> ${{item.price}}</td>
     <td><input #itemAmount (keyup.enter)="buyItem(item,itemAmount.value,i)" type="number" name="" value=""> <button type="button" name="button" (click)="buyItem(item,itemAmount.value,i)">BUY</button></td>
-    <td>{{company.inventory[i]}}</td>
+    <td>{{getCompanyInvById(i)}}</td>
     <td><input #itemOwned (keyup.enter)="sellItem(item,itemOwned.value,i)" type="number" name="" value=""> <button type="button" name="button" (click)="sellItem(item,itemOwned.value,i)">Sell</button></td>
   </tr>
 </table>

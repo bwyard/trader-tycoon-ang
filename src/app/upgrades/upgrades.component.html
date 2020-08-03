@@ -1,5 +1,5 @@
 <h1>Upgrades</h1>
-<table class="upgrades">
+<table class="table table-striped">
   <tr class = 'header'>
     <th>Name</th>
     <th>price</th>
@@ -8,7 +8,7 @@
   <tr *ngFor="let item of upgrades,index as i">
     <td class="itemName">{{item.name | uppercase}}</td>
     <td class="price"> ${{item.cost}}</td>
-    <td>{{item.description}}<button [disabled]="item.owned" (click)="purchase(item)" type="button" name="button">Buy</button></td>
-    <td>{{item.owned}}</td>
+    <td><button [disabled]="isDisabled(item)" (click)="purchase(item)" type="button" name="button">Buy</button></td>
+    <td>{{isOwned(item) | uppercase}}</td>
   </tr>
 </table>
